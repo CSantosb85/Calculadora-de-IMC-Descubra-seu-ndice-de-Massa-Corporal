@@ -4,254 +4,264 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Calculadoras de saúde online e gratuitas: Calcule seu IMC (Índice de Massa Corporal), TMB (Gasto Calórico) e a ingestão ideal de água. Ferramentas úteis para seu bem-estar.">
-  <title>Calculadora de IMC e Saúde | Online e Grátis</title>
+  <title>Calculadora de Saúde | IMC, Calorias e Hidratação</title>
+  
+  <!-- Google Fonts: Poppins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+
   <style>
-    /* --- Estilos Gerais --- */
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      margin: 0;
-      background-color: #f0f2f5; /* Um cinza mais suave */
-      color: #333;
-    }
-    .container {
-      max-width: 650px; /* Limita a largura para melhor leitura */
-      margin: 0 auto;   /* Centraliza o conteúdo */
-      background-color: white;
-      box-shadow: 0 2px 8px rgba(0,0,0,0.1); /* Sombra sutil */
+    :root {
+      --primary-color: #3a7bd5;
+      --secondary-color: #3a60d5;
+      --accent-color: #ff8c00;
+      --text-color: #333;
+      --bg-color: #f4f7fc;
+      --card-bg: rgba(255, 255, 255, 0.7 );
     }
 
-    /* --- Navegação por Abas --- */
+    body {
+      font-family: 'Poppins', sans-serif;
+      margin: 0;
+      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
+      color: var(--text-color);
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+      min-height: 100vh;
+      padding: 20px;
+      box-sizing: border-box;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 700px;
+      background: var(--card-bg);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 20px;
+      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      overflow: hidden; /* Para manter as bordas arredondadas */
+    }
+
     .nav {
       display: flex;
-      background-color: #0288d1;
+      background-color: rgba(0, 0, 0, 0.1);
     }
     .nav button {
       flex: 1;
-      padding: 15px 10px;
-      background: #0288d1;
+      padding: 18px 10px;
+      background: transparent;
       color: white;
       border: none;
       cursor: pointer;
       font-size: 16px;
-      transition: background-color 0.2s;
+      font-weight: 600;
+      transition: all 0.3s ease;
+      border-bottom: 3px solid transparent;
     }
     .nav button:hover {
-      background-color: #0277bd;
+      background-color: rgba(255, 255, 255, 0.1);
     }
     .nav button.active {
-      background-color: #01579b;
-      font-weight: bold;
+      color: #fff;
+      border-bottom: 3px solid var(--accent-color);
     }
 
-    /* --- Conteúdo das Abas --- */
     .content {
-      padding: 25px;
+      padding: 30px;
       display: none;
+      animation: fadeIn 0.5s ease;
     }
-    .content.active {
-      display: block;
-    }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+    .content.active { display: block; }
     .content h2 {
       margin-top: 0;
-      color: #01579b;
+      color: var(--primary-color);
+      text-align: center;
+      font-weight: 700;
     }
-    .input-group {
-      margin-bottom: 15px;
-    }
+
+    .input-group { margin-bottom: 20px; }
     label {
       display: block;
-      margin-bottom: 5px;
-      font-weight: bold;
+      margin-bottom: 8px;
+      font-weight: 600;
       color: #555;
     }
     input, select {
       display: block;
       width: 100%;
-      padding: 10px;
-      box-sizing: border-box; /* Garante que o padding não quebre o layout */
+      padding: 12px;
+      box-sizing: border-box;
       border: 1px solid #ccc;
-      border-radius: 4px;
+      border-radius: 8px;
       font-size: 16px;
+      font-family: 'Poppins', sans-serif;
+      transition: border-color 0.3s, box-shadow 0.3s;
     }
-    button {
-      padding: 12px 20px;
-      background-color: #28a745; /* Verde para ação positiva */
-      color: white;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: bold;
-      width: 100%;
-    }
-    button:hover {
-      background-color: #218838;
-    }
-    .result {
-      font-weight: bold;
-      font-size: 1.1em;
-      margin-top: 20px;
-      padding: 15px;
-      background-color: #eef;
-      border-left: 4px solid #0288d1;
-      border-radius: 4px;
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.3);
     }
 
-    /* --- Seções Adicionais (FAQ, CTA, Tabela) --- */
+    .main-button {
+      padding: 15px 20px;
+      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 18px;
+      font-weight: 600;
+      width: 100%;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .main-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    .result {
+      font-size: 1.2em;
+      margin-top: 25px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.8);
+      border-left: 5px solid var(--accent-color);
+      border-radius: 8px;
+      text-align: center;
+      animation: fadeIn 0.5s;
+    }
+    .result strong { color: var(--primary-color); }
+
     .info-section {
       margin-top: 25px;
-      padding: 15px;
-      background-color: #f9f9f9;
-      border: 1px solid #eee;
-      border-radius: 5px;
+      padding: 20px;
+      background-color: rgba(255, 255, 255, 0.5);
+      border-radius: 8px;
     }
-    .info-section h4 {
-      margin-top: 0;
-      color: #333;
-    }
+    .info-section h4 { margin-top: 0; color: var(--primary-color); }
+    
     .cta-group a {
       display: block;
       margin-top: 15px;
-      padding: 12px;
-      background-color: #ff6f00;
+      padding: 15px;
+      background: var(--accent-color);
       color: white;
       text-align: center;
       border-radius: 8px;
       text-decoration: none;
-      font-weight: bold;
-      transition: background-color 0.2s;
+      font-weight: 600;
+      transition: all 0.2s;
     }
     .cta-group a:hover {
-      background-color: #e66000;
-    }
-    .imc-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin-top: 10px;
-    }
-    .imc-table th, .imc-table td {
-      padding: 10px;
-      border: 1px solid #ddd;
-      text-align: left;
-    }
-    .imc-table tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }
-    .social-share {
-      margin-top: 25px;
-      text-align: center;
-    }
-    .social-share a {
-      text-decoration: none;
-      font-weight: bold;
-      margin: 0 10px;
-      padding: 8px 12px;
-      border-radius: 5px;
-    }
-    .whatsapp-share {
-      color: #25D366;
-      border: 1px solid #25D366;
-    }
-    .twitter-share {
-      color: #1DA1F2;
-      border: 1px solid #1DA1F2;
+      transform: scale(1.03);
+      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
     }
 
-    /* --- Rodapé --- */
+    .imc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+    .imc-table th, .imc-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
+    .imc-table th { background-color: var(--primary-color); color: white; }
+    .imc-table tr:nth-child(even) { background-color: #f8faff; }
+
+    .social-share { margin-top: 30px; text-align: center; }
+    .social-share a {
+      text-decoration: none;
+      font-weight: 600;
+      margin: 0 10px;
+      padding: 10px 15px;
+      border-radius: 20px;
+      transition: all 0.3s;
+    }
+    .whatsapp-share { color: #25D366; background-color: #fff; border: 1px solid #25D366; }
+    .whatsapp-share:hover { background-color: #25D366; color: #fff; }
+    .twitter-share { color: #1DA1F2; background-color: #fff; border: 1px solid #1DA1F2; }
+    .twitter-share:hover { background-color: #1DA1F2; color: #fff; }
+
     footer {
       text-align: center;
-      padding: 20px;
-      font-size: 12px;
-      color: #666;
-      background-color: #f0f2f5;
+      padding: 30px;
+      font-size: 14px;
+      color: #eee;
+      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
     }
   </style>
 </head>
 <body>
 
   <div class="container">
-    <div class="nav">
-      <button class="tab-button active" onclick="openTab(event, 'imc')">Calculadora de IMC</button>
-      <button class="tab-button" onclick="openTab(event, 'calorias')">Gasto Calórico (TMB)</button>
-      <button class="tab-button" onclick="openTab(event, 'agua')">Ingestão de Água</button>
-    </div>
+    <header>
+      <div class="nav">
+        <button class="tab-button active" onclick="openTab(event, 'imc')">IMC</button>
+        <button class="tab-button" onclick="openTab(event, 'calorias')">Calorias</button>
+        <button class="tab-button" onclick="openTab(event, 'agua')">Hidratação</button>
+      </div>
+    </header>
 
-    <!-- Aba da Calculadora de IMC -->
-    <div id="imc" class="content active">
-      <h2>Calculadora de IMC (Índice de Massa Corporal)</h2>
-      <div class="input-group">
-        <label for="pesoIMC">Seu Peso (kg):</label>
-        <input type="number" id="pesoIMC" placeholder="Ex: 70">
+    <main>
+      <!-- Aba da Calculadora de IMC -->
+      <div id="imc" class="content active">
+        <h2>Calculadora de IMC</h2>
+        <div class="input-group"><label for="pesoIMC">Seu Peso (kg):</label><input type="number" id="pesoIMC" placeholder="Ex: 70"></div>
+        <div class="input-group"><label for="alturaIMC">Sua Altura (cm):</label><input type="number" id="alturaIMC" placeholder="Ex: 175"></div>
+        <button class="main-button" onclick="calcularIMC()">Calcular Meu IMC</button>
+        <div class="result" id="resultadoIMC" style="display:none;"></div>
+        <div class="info-section" id="imc-info" style="display:none;">
+          <h4>Entendendo a Tabela de IMC</h4>
+          <table class="imc-table">
+            <thead><tr><th>IMC</th><th>Classificação</th></tr></thead>
+            <tbody>
+              <tr><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
+              <tr><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
+              <tr><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
+              <tr><td>30.0 e acima</td><td>Obesidade</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="cta-group"><a href="https://amzn.to/3IA7dWA" target="_blank">🛒 Ofertas de Balanças Digitais</a></div>
       </div>
-      <div class="input-group">
-        <label for="alturaIMC">Sua Altura (cm):</label>
-        <input type="number" id="alturaIMC" placeholder="Ex: 175">
-      </div>
-      <button onclick="calcularIMC()">Calcular Meu IMC</button>
-      <div class="result" id="resultadoIMC" style="display:none;"></div>
 
-      <div class="info-section">
-        <h4>Entendendo a Tabela de IMC</h4>
-        <p>Confira a classificação do seu resultado de acordo com as faixas de IMC:</p>
-        <table class="imc-table">
-          <tr style="background-color: #0288d1; color: white;">
-            <th>IMC</th>
-            <th>Classificação</th>
-          </tr>
-          <tr><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
-          <tr><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
-          <tr><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
-          <tr><td>30.0 e acima</td><td>Obesidade</td></tr>
-        </table>
+      <!-- Aba da Calculadora de TMB -->
+      <div id="calorias" class="content">
+        <h2>Calculadora de Gasto Calórico (TMB )</h2>
+        <div class="input-group"><label for="pesoTMB">Peso (kg):</label><input type="number" id="pesoTMB"></div>
+        <div class="input-group"><label for="alturaTMB">Altura (cm):</label><input type="number" id="alturaTMB"></div>
+        <div class="input-group"><label for="idadeTMB">Idade:</label><input type="number" id="idadeTMB"></div>
+        <div class="input-group"><label for="sexoTMB">Sexo:</label><select id="sexoTMB"><option value="masculino">Masculino</option><option value="feminino">Feminino</option></select></div>
+        <button class="main-button" onclick="calcularTMB()">Calcular Minha TMB</button>
+        <div class="result" id="resultadoTMB" style="display:none;"></div>
+        <div class="cta-group">
+          <a href="https://go.hotmart.com/U77380533W" target="_blank">🔥 Curso para Acelerar seu Metabolismo</a>
+          <a href="https://go.hotmart.com/R77187210T" target="_blank">🥗 Guia Nutricional Completo</a>
+        </div>
       </div>
-      
-      <div class="cta-group">
-        <a href="https://amzn.to/3IA7dWA" target="_blank" class="cta">🛒 Ofertas de Balanças Digitais na Amazon</a>
-      </div>
-    </div>
 
-    <!-- Aba da Calculadora de TMB -->
-    <div id="calorias" class="content">
-      <h2>Calculadora de Gasto Calórico (TMB )</h2>
-      <div class="input-group"><label for="pesoTMB">Peso (kg):</label><input type="number" id="pesoTMB"></div>
-      <div class="input-group"><label for="alturaTMB">Altura (cm):</label><input type="number" id="alturaTMB"></div>
-      <div class="input-group"><label for="idadeTMB">Idade:</label><input type="number" id="idadeTMB"></div>
-      <div class="input-group">
-        <label for="sexoTMB">Sexo:</label>
-        <select id="sexoTMB"><option value="masculino">Masculino</option><option value="feminino">Feminino</option></select>
+      <!-- Aba da Calculadora de Água -->
+      <div id="agua" class="content">
+        <h2>Calculadora de Ingestão de Água</h2>
+        <div class="input-group"><label for="pesoAgua">Seu Peso (kg ):</label><input type="number" id="pesoAgua"></div>
+        <button class="main-button" onclick="calcularAgua()">Calcular Hidratação</button>
+        <div class="result" id="resultadoAgua" style="display:none;"></div>
+        <div class="cta-group">
+          <a href="https://amzn.to/44U5QJT" target="_blank">💧 Garrafas com Marcação de Horas</a>
+          <a href="https://amzn.to/4lBfvvN" target="_blank">🧊 Garrafas Térmicas para o Dia a Dia</a>
+        </div>
       </div>
-      <button onclick="calcularTMB()">Calcular Minha TMB</button>
-      <div class="result" id="resultadoTMB" style="display:none;"></div>
-      <div class="cta-group">
-        <a href="https://go.hotmart.com/U77380533W" target="_blank">🔥 Curso para acelerar seu metabolismo</a>
-        <a href="https://go.hotmart.com/R77187210T" target="_blank">🥗 Guia nutricional completo</a>
-      </div>
-    </div>
+    </main>
 
-    <!-- Aba da Calculadora de Água -->
-    <div id="agua" class="content">
-      <h2>Calculadora de Ingestão de Água</h2>
-      <div class="input-group"><label for="pesoAgua">Seu Peso (kg ):</label><input type="number" id="pesoAgua"></div>
-      <button onclick="calcularAgua()">Calcular Hidratação</button>
-      <div class="result" id="resultadoAgua" style="display:none;"></div>
-      <div class="cta-group">
-        <a href="https://amzn.to/44U5QJT" target="_blank">💧 Garrafa com marcação de hidratação</a>
-        <a href="https://amzn.to/4lBfvvN" target="_blank">🧊 Garrafa térmica ideal para o dia todo</a>
-      </div>
-    </div>
-
-    <!-- Seção de Compartilhamento Social (Comum a todas as abas ) -->
     <div class="social-share">
-      <strong>Gostou da calculadora? Compartilhe!</strong><br><br>
+      <strong>Gostou? Compartilhe!</strong><br><br>
       <a href="https://api.whatsapp.com/send?text=Calculei%20meu%20IMC%20nesta%20calculadora%20online%20gratuita:%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
       <a href="https://twitter.com/intent/tweet?text=Ferramenta%20%C3%BAtil%20para%20calcular%20o%20IMC%20e%20cuidar%20da%20sa%C3%BAde!&url=https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="twitter-share">Twitter/X</a>
     </div>
+    
+    <footer style="background: transparent; padding-top: 10px; padding-bottom: 20px; color: #333;">
+      <p style="font-size: 12px; opacity: 0.8;"><strong>Aviso:</strong> Nossas calculadoras são para fins informativos. Consulte sempre um profissional de saúde.</p>
+    </footer>
   </div>
-
-  <footer>
-    <p><strong>Aviso Importante:</strong> Nossas calculadoras oferecem estimativas para fins informativos e educacionais. Elas não substituem a consulta com um médico, nutricionista ou outro profissional de saúde qualificado. Consulte sempre um especialista para avaliações de saúde e planos de bem-estar.</p>
-    <p>&copy; 2025 Calculadora de Saúde. Todos os direitos reservados.</p>
-  </footer>
 
   <script>
     function openTab(evt, tabId ) {
@@ -265,13 +275,16 @@
       const peso = parseFloat(document.getElementById('pesoIMC').value);
       const altura = parseFloat(document.getElementById('alturaIMC').value) / 100;
       const resultadoDiv = document.getElementById('resultadoIMC');
+      const infoDiv = document.getElementById('imc-info');
       if (peso && altura) {
         const imc = peso / (altura * altura);
         resultadoDiv.innerHTML = `Seu IMC é <strong>${imc.toFixed(2)}</strong>.`;
         resultadoDiv.style.display = 'block';
+        infoDiv.style.display = 'block';
       } else {
         resultadoDiv.innerText = 'Por favor, preencha seu peso e altura.';
         resultadoDiv.style.display = 'block';
+        infoDiv.style.display = 'none';
       }
     }
 
@@ -282,13 +295,10 @@
       const sexo = document.getElementById('sexoTMB').value;
       const resultadoDiv = document.getElementById('resultadoTMB');
       if (peso && altura && idade) {
-        let tmb = 0;
-        if (sexo === 'masculino') {
-          tmb = 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade);
-        } else {
-          tmb = 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
-        }
-        resultadoDiv.innerHTML = `Sua Taxa Metabólica Basal (TMB) é de aproximadamente <strong>${Math.round(tmb)} kcal</strong> por dia.`;
+        let tmb = (sexo === 'masculino')
+          ? 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade)
+          : 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
+        resultadoDiv.innerHTML = `Sua Taxa Metabólica Basal (TMB) é de aprox. <strong>${Math.round(tmb)} kcal</strong> por dia.`;
         resultadoDiv.style.display = 'block';
       } else {
         resultadoDiv.innerText = 'Preencha todos os campos para calcular.';
@@ -300,8 +310,7 @@
       const peso = parseFloat(document.getElementById('pesoAgua').value);
       const resultadoDiv = document.getElementById('resultadoAgua');
       if (peso) {
-        const totalMl = peso * 35;
-        const litros = totalMl / 1000;
+        const litros = (peso * 35) / 1000;
         resultadoDiv.innerHTML = `Você deve beber aproximadamente <strong>${litros.toFixed(2)} litros</strong> de água por dia.`;
         resultadoDiv.style.display = 'block';
       } else {
