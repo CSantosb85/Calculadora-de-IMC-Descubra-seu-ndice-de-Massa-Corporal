@@ -1,681 +1,194 @@
 <!DOCTYPE html>
-
 <html lang="pt-BR">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Calculadora de IMC: Descubra seu Índice de Massa Corporal</title>
-<meta content="Use calculadoras de saúde online para descobrir seu IMC, gasto calórico (TMB) e ingestão ideal de água por dia. Simples, rápido e gratuito." name="description"/>
-<meta content="calculadora IMC, calculadora TMB, calculadora de calorias, ingestão de água, saúde, peso ideal" name="keywords"/>
-<meta content="SeuNome" name="author"/>
-<link href="https://cdn-icons-png.flaticon.com/512/2622/2622921.png" rel="icon" type="image/png"/>
-<style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Calculadoras de saúde: IMC, gasto calórico e ingestão de água. Ferramentas úteis para bem-estar e hábitos saudáveis.">
+  <title>Calculadora de IMC: Descubra seu Índice de Massa Corporal | IMC, Calorias, Hidratação</title>
+  <style>
     body {
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-      min-height: 100vh;
-      padding: 20px;
+      font-family: Arial, sans-serif;
+      margin: 0;
+      background: #f4f4f4;
     }
-
-    .container {
-      max-width: 1000px;
-      margin: 0 auto;
-      background: rgba(255, 255, 255, 0.95);
-      backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
-      overflow: hidden;
-    }
-
-    .header {
-      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-      color: white;
-      padding: 40px 20px;
-      text-align: center;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .header::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
-      animation: float 6s ease-in-out infinite;
-    }
-
-    @keyframes float {
-      0%, 100% { transform: translateY(0px); }
-      50% { transform: translateY(-20px); }
-    }
-
-    .header h1 {
-      font-size: 2.5em;
-      margin-bottom: 10px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .header p {
-      font-size: 1.2em;
-      opacity: 0.9;
-      position: relative;
-      z-index: 1;
-    }
-
-    .tabs {
+    .nav {
       display: flex;
-      background: #f8f9fa;
-      border-bottom: 2px solid #e9ecef;
+      background-color: #0288d1;
     }
-
-    .tab-btn {
+    .nav button {
       flex: 1;
-      padding: 20px;
-      font-size: 1.1em;
-      font-weight: 600;
-      border: none;
-      background: transparent;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      position: relative;
-      color: #666;
-    }
-
-    .tab-btn:hover {
-      background: rgba(76, 175, 80, 0.1);
-      color: #4CAF50;
-    }
-
-    .tab-btn.active {
-      background: #4CAF50;
-      color: white;
-      transform: translateY(-2px);
-    }
-
-    .tab-btn.active::after {
-      content: '';
-      position: absolute;
-      bottom: -2px;
-      left: 0;
-      right: 0;
-      height: 4px;
-      background: #45a049;
-    }
-
-    .tool {
-      padding: 40px;
-      display: none;
-      animation: fadeIn 0.5s ease-in-out;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .tool.active {
-      display: block;
-    }
-
-    .tool h2 {
-      color: #333;
-      margin-bottom: 30px;
-      font-size: 2em;
-      text-align: center;
-      position: relative;
-    }
-
-    .tool h2::after {
-      content: '';
-      position: absolute;
-      bottom: -10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: 50px;
-      height: 3px;
-      background: linear-gradient(90deg, #4CAF50, #45a049);
-      border-radius: 2px;
-    }
-
-    .form-group {
-      margin-bottom: 20px;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #555;
-    }
-
-    input, select {
-      width: 100%;
       padding: 15px;
-      border: 2px solid #e9ecef;
-      border-radius: 10px;
-      font-size: 1em;
-      transition: all 0.3s ease;
+      background: #0288d1;
+      color: white;
+      border: none;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .nav button.active {
+      background-color: #01579b;
+    }
+    .content {
+      padding: 20px;
+      display: none;
       background: white;
     }
-
-    input:focus, select:focus {
-      outline: none;
-      border-color: #4CAF50;
-      box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-      transform: translateY(-1px);
-    }
-
-    .calc-btn {
-      width: 100%;
-      padding: 18px;
-      font-size: 1.2em;
-      font-weight: 600;
-      border: none;
-      border-radius: 10px;
-      background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-      color: white;
-      cursor: pointer;
-      transition: all 0.3s ease;
-      margin-top: 20px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .calc-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 10px 20px rgba(76, 175, 80, 0.3);
-    }
-
-    .calc-btn:active {
-      transform: translateY(0);
-    }
-
-    .result {
-      margin-top: 30px;
-      padding: 25px;
-      background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
-      border-radius: 15px;
-      border-left: 5px solid #4CAF50;
-      font-size: 1.1em;
-      line-height: 1.6;
-      display: none;
-      animation: slideIn 0.5s ease-out;
-    }
-
-    @keyframes slideIn {
-      from { opacity: 0; transform: translateX(-20px); }
-      to { opacity: 1; transform: translateX(0); }
-    }
-
-    .result.show {
+    .content.active {
       display: block;
     }
-
-    .result-value {
-      font-size: 1.5em;
-      font-weight: bold;
-      color: #4CAF50;
-      margin-bottom: 10px;
-    }
-
-    .result-description {
-      color: #666;
-      font-size: 0.95em;
-    }
-
-    .cta {
-      text-align: center;
-      margin-top: 30px;
-      padding: 20px;
-      background: linear-gradient(135deg, #ff6f00 0%, #e65100 100%);
-      border-radius: 15px;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .cta::before {
-      content: '';
-      position: absolute;
-      top: 0;
-      left: -100%;
-      width: 100%;
-      height: 100%;
-      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-      transition: left 0.5s;
-    }
-
-    .cta:hover::before {
-      left: 100%;
-    }
-
-    .cta a {
-      color: white;
-      text-decoration: none;
-      font-weight: 600;
-      font-size: 1.1em;
-      position: relative;
-      z-index: 1;
-    }
-
-    .health-tips {
-      background: #f8f9fa;
-      margin-top: 30px;
-      padding: 25px;
-      border-radius: 15px;
-      border-left: 5px solid #17a2b8;
-    }
-
-    .health-tips h3 {
-      color: #17a2b8;
+    .input-group {
       margin-bottom: 15px;
-      font-size: 1.3em;
     }
-
-    .health-tips ul {
-      list-style: none;
-      padding: 0;
+    label, input, select {
+      display: block;
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
     }
-
-    .health-tips li {
-      padding: 8px 0;
-      padding-left: 25px;
-      position: relative;
-      color: #666;
-      line-height: 1.5;
-    }
-
-    .health-tips li::before {
-      content: '✓';
-      position: absolute;
-      left: 0;
-      color: #17a2b8;
+    .result {
       font-weight: bold;
+      margin-top: 15px;
     }
-
-    .footer {
-      background: #333;
+    .cta {
+      margin-top: 20px;
+      padding: 12px;
+      background-color: #ff6f00;
       color: white;
       text-align: center;
-      padding: 20px;
-      font-size: 0.9em;
+      border-radius: 8px;
+      text-decoration: none;
+      display: inline-block;
+      font-weight: bold;
     }
-
-    .error {
-      color: #dc3545;
-      font-size: 0.9em;
-      margin-top: 5px;
-      display: none;
+    .faq {
+      margin-top: 25px;
+      padding: 15px;
+      background-color: #eef;
+      border-left: 4px solid #0288d1;
     }
-
-    .error.show {
-      display: block;
-    }
-
-    @media (max-width: 768px) {
-      .tabs {
-        flex-direction: column;
-      }
-      
-      .tool {
-        padding: 20px;
-      }
-      
-      .header h1 {
-        font-size: 2em;
-      }
-      
-      .header p {
-        font-size: 1em;
-      }
+    .faq h4 {
+      margin-top: 0;
     }
   </style>
 </head>
 <body>
-<div class="container">
-<div class="header">
-<h1>🏥 Calculadoras de Saúde</h1>
-<p>Ferramentas gratuitas para monitorar sua saúde e bem-estar</p>
-</div>
-<div class="tabs">
-<button class="tab-btn active" onclick="mostrar('imc')">📊 IMC</button>
-<button class="tab-btn" onclick="mostrar('tmb')">🔥 Calorias</button>
-<button class="tab-btn" onclick="mostrar('agua')">💧 Hidratação</button>
-</div>
-<!-- IMC -->
-<div class="tool active" id="imc">
-<h2>Calculadora de IMC</h2>
-<div class="form-group">
-<label for="pesoIMC">Peso (kg)</label>
-<input id="pesoIMC" max="300" min="1" placeholder="Ex: 70.5" step="0.1" type="number"/>
-<div class="error" id="erroPesoIMC">Por favor, insira um peso válido</div>
-</div>
-<div class="form-group">
-<label for="alturaIMC">Altura (cm)</label>
-<input id="alturaIMC" max="250" min="50" placeholder="Ex: 175" step="0.1" type="number"/>
-<div class="error" id="erroAlturaIMC">Por favor, insira uma altura válida</div>
-</div>
-<button class="calc-btn" onclick="calcularIMC()">Calcular IMC</button>
-<div class="result" id="resultadoIMC"></div>
-<div class="health-tips">
-<h3>💡 Dicas sobre IMC</h3>
-<ul>
-<li>O IMC é uma medida aproximada e não considera massa muscular</li>
-<li>Valores entre 18,5 e 24,9 são considerados normais</li>
-<li>Consulte sempre um profissional de saúde para avaliação completa</li>
-</ul>
-</div>
-<div class="cta">
-<a href="https://amzn.to/3IA7dWA" target="_blank">🛒 Veja balanças digitais com ofertas</a>
-</div>
-</div>
-<!-- TMB -->
-<div class="tool" id="tmb">
-<h2>Calculadora de Calorias (TMB)</h2>
-<div class="form-group">
-<label for="idadeTMB">Idade (anos)</label>
-<input id="idadeTMB" max="120" min="10" placeholder="Ex: 30" type="number"/>
-<div class="error" id="erroIdadeTMB">Por favor, insira uma idade válida</div>
-</div>
-<div class="form-group">
-<label for="sexoTMB">Sexo</label>
-<select id="sexoTMB">
-<option value="">Selecione o sexo</option>
-<option value="masculino">Masculino</option>
-<option value="feminino">Feminino</option>
-</select>
-<div class="error" id="erroSexoTMB">Por favor, selecione o sexo</div>
-</div>
-<div class="form-group">
-<label for="pesoTMB">Peso (kg)</label>
-<input id="pesoTMB" max="300" min="1" placeholder="Ex: 70.5" step="0.1" type="number"/>
-<div class="error" id="erroPesoTMB">Por favor, insira um peso válido</div>
-</div>
-<div class="form-group">
-<label for="alturaTMB">Altura (cm)</label>
-<input id="alturaTMB" max="250" min="50" placeholder="Ex: 175" step="0.1" type="number"/>
-<div class="error" id="erroAlturaTMB">Por favor, insira uma altura válida</div>
-</div>
-<div class="form-group">
-<label for="atividadeTMB">Nível de Atividade</label>
-<select id="atividadeTMB">
-<option value="">Selecione o nível</option>
-<option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
-<option value="1.375">Levemente ativo (exercício leve 1-3 dias/semana)</option>
-<option value="1.55">Moderadamente ativo (exercício moderado 3-5 dias/semana)</option>
-<option value="1.725">Muito ativo (exercício intenso 6-7 dias/semana)</option>
-<option value="1.9">Extremamente ativo (exercício muito intenso, trabalho físico)</option>
-</select>
-<div class="error" id="erroAtividadeTMB">Por favor, selecione o nível de atividade</div>
-</div>
-<button class="calc-btn" onclick="calcularTMB()">Calcular Calorias</button>
-<div class="result" id="resultadoTMB"></div>
-<div class="health-tips">
-<h3>💡 Dicas sobre Metabolismo</h3>
-<ul>
-<li>TMB é o gasto energético em repouso absoluto</li>
-<li>Para perder peso, consuma menos calorias que o gasto total</li>
-<li>Para ganhar peso, consuma mais calorias que o gasto total</li>
-<li>Exercícios regulares aumentam o metabolismo</li>
-</ul>
-</div>
+  <div class="nav">
+    <button class="tab-button active" onclick="openTab(event, 'imc')">IMC</button>
+    <button class="tab-button" onclick="openTab(event, 'calorias')">Calorias</button>
+    <button class="tab-button" onclick="openTab(event, 'agua')">Hidratação</button>
+  </div>
 
-<div class="cta"><a href="https://go.hotmart.com/U77380533W" target="_blank">🔥 Curso para acelerar seu metabolismo</a></div><div class="cta"><a href="https://go.hotmart.com/R77187210T" target="_blank">🥗 Guia nutricional completo</a></div></div>
-<!-- Água -->
-<div class="tool" id="agua">
-<h2>Calculadora de Hidratação</h2>
-<div class="form-group">
-<label for="pesoAgua">Peso (kg)</label>
-<input id="pesoAgua" max="300" min="1" placeholder="Ex: 70.5" step="0.1" type="number"/>
-<div class="error" id="erroPesoAgua">Por favor, insira um peso válido</div>
-</div>
-<div class="form-group">
-<label for="atividadeAgua">Nível de Atividade</label>
-<select id="atividadeAgua">
-<option value="">Selecione o nível</option>
-<option value="normal">Atividade Leve/Moderada</option>
-<option value="alta">Atividade Alta/Intensa</option>
-</select>
-<div class="error" id="erroAtividadeAgua">Por favor, selecione o nível de atividade</div>
-</div>
-<button class="calc-btn" onclick="calcularAgua()">Calcular Hidratação</button>
-<div class="result" id="resultadoAgua"></div>
-<div class="health-tips">
-<h3>💡 Dicas de Hidratação</h3>
-<ul>
-<li>Beba água regularmente ao longo do dia</li>
-<li>Aumente o consumo em dias quentes ou durante exercícios</li>
-<li>Urina clara indica boa hidratação</li>
-<li>Evite esperar sentir sede para beber água</li>
-</ul>
-</div>
+  <div id="imc" class="content active">
+    <h2>Calculadora de IMC</h2>
+    <div class="input-group">
+      <label for="pesoIMC">Peso (kg):</label>
+      <input type="number" id="pesoIMC">
+    </div>
+    <div class="input-group">
+      <label for="alturaIMC">Altura (cm):</label>
+      <input type="number" id="alturaIMC">
+    </div>
+    <button onclick="calcularIMC()">Calcular</button>
+    <div class="result" id="resultadoIMC"></div>
+    <a href="https://amzn.to/3IA7dWA" target="_blank" class="cta">🛒 Veja balanças digitais com ofertas</a>
+    <div class="faq">
+      <h4>📌 O que é IMC?</h4>
+      <p>IMC significa Índice de Massa Corporal. Ele ajuda a identificar se o seu peso está adequado em relação à sua altura. É uma referência útil, mas não considera músculos ou gordura corporal.</p>
+    </div>
+  </div>
 
-<div class="cta"><a href="https://amzn.to/44U5QJT" target="_blank">💧 Garrafa com marcação de hidratação</a></div><div class="cta"><a href="https://amzn.to/4lBfvvN" target="_blank">🧊 Garrafa térmica ideal para o dia todo</a></div></div>
-<div class="footer">
-<p>© 2025 Calculadoras de Saúde. Desenvolvido com ❤️ para sua saúde e bem-estar.</p>
-<p><small>As informações fornecidas são apenas orientativas. Consulte sempre um profissional de saúde.</small></p>
-</div>
-</div>
-<script>
-    function mostrar(id) {
-      // Remove active das abas e conteúdos
-      document.querySelectorAll('.tool').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
-      
-      // Adiciona active na aba e conteúdo selecionado
-      document.getElementById(id).classList.add('active');
-      event.target.classList.add('active');
-      
-      // Limpa resultados anteriores
-      document.querySelectorAll('.result').forEach(el => el.classList.remove('show'));
-      document.querySelectorAll('.error').forEach(el => el.classList.remove('show'));
-    }
+  <div id="calorias" class="content">
+    <h2>Calculadora de Gasto Calórico (TMB)</h2>
+    <div class="input-group">
+      <label for="pesoTMB">Peso (kg):</label>
+      <input type="number" id="pesoTMB">
+    </div>
+    <div class="input-group">
+      <label for="alturaTMB">Altura (cm):</label>
+      <input type="number" id="alturaTMB">
+    </div>
+    <div class="input-group">
+      <label for="idadeTMB">Idade:</label>
+      <input type="number" id="idadeTMB">
+    </div>
+    <div class="input-group">
+      <label for="sexoTMB">Sexo:</label>
+      <select id="sexoTMB">
+        <option value="masculino">Masculino</option>
+        <option value="feminino">Feminino</option>
+      </select>
+    </div>
+    <button onclick="calcularTMB()">Calcular</button>
+    <div class="result" id="resultadoTMB"></div>
+    <a href="https://go.hotmart.com/U77380533W" target="_blank" class="cta">🔥 Curso para acelerar seu metabolismo</a>
+    <br><br>
+    <a href="https://go.hotmart.com/R77187210T" target="_blank" class="cta">🥗 Guia nutricional completo</a>
+    <div class="faq">
+      <h4>📌 O que é TMB?</h4>
+      <p>A Taxa Metabólica Basal (TMB) é a quantidade de calorias que seu corpo gasta em repouso para manter funções básicas como respiração e circulação. Conhecer sua TMB ajuda a planejar dietas e exercícios.</p>
+    </div>
+  </div>
 
-    function mostrarErro(campoId, mostrar = true) {
-      const erro = document.getElementById('erro' + campoId);
-      if (mostrar) {
-        erro.classList.add('show');
-      } else {
-        erro.classList.remove('show');
-      }
-    }
+  <div id="agua" class="content">
+    <h2>Calculadora de Ingestão de Água</h2>
+    <div class="input-group">
+      <label for="pesoAgua">Peso (kg):</label>
+      <input type="number" id="pesoAgua">
+    </div>
+    <button onclick="calcularAgua()">Calcular</button>
+    <div class="result" id="resultadoAgua"></div>
+    <a href="https://amzn.to/44U5QJT" target="_blank" class="cta">💧 Garrafa com marcação de hidratação</a>
+    <br><br>
+    <a href="https://amzn.to/4lBfvvN" target="_blank" class="cta">🧊 Garrafa térmica ideal para o dia todo</a>
+    <div class="faq">
+      <h4>📌 Quanto de água devo beber por dia?</h4>
+      <p>Em média, recomenda-se cerca de 35 ml por kg de peso corporal. No entanto, esse valor pode variar com base na temperatura, atividades físicas e condições de saúde.</p>
+    </div>
+  </div>
 
-    function validarCampo(valor, min, max) {
-      return valor && !isNaN(valor) && valor >= min && valor <= max;
+  <script>
+    function openTab(evt, tabId) {
+      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
+      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
+      document.getElementById(tabId).classList.add('active');
+      evt.currentTarget.classList.add('active');
     }
 
     function calcularIMC() {
-      const peso = parseFloat(document.getElementById("pesoIMC").value);
-      const altura = parseFloat(document.getElementById("alturaIMC").value);
-      
-      // Limpar erros anteriores
-      mostrarErro('PesoIMC', false);
-      mostrarErro('AlturaIMC', false);
-      
-      let hasError = false;
-      
-      if (!validarCampo(peso, 1, 300)) {
-        mostrarErro('PesoIMC', true);
-        hasError = true;
-      }
-      
-      if (!validarCampo(altura, 50, 250)) {
-        mostrarErro('AlturaIMC', true);
-        hasError = true;
-      }
-      
-      if (hasError) return;
-      
-      const alturaM = altura / 100;
-      const imc = peso / (alturaM * alturaM);
-      
-      let status = "";
-      let descricao = "";
-      let cor = "";
-      
-      if (imc < 18.5) {
-        status = "Abaixo do peso";
-        descricao = "Considere consultar um nutricionista para um plano de ganho de peso saudável.";
-        cor = "#17a2b8";
-      } else if (imc < 25) {
-        status = "Peso normal";
-        descricao = "Parabéns! Você está dentro do peso ideal. Mantenha hábitos saudáveis.";
-        cor = "#28a745";
-      } else if (imc < 30) {
-        status = "Sobrepeso";
-        descricao = "Considere adotar uma dieta equilibrada e exercícios regulares.";
-        cor = "#ffc107";
-      } else if (imc < 35) {
-        status = "Obesidade Grau I";
-        descricao = "Recomenda-se buscar orientação médica para um plano de emagrecimento.";
-        cor = "#fd7e14";
-      } else if (imc < 40) {
-        status = "Obesidade Grau II";
-        descricao = "É importante procurar acompanhamento médico especializado.";
-        cor = "#dc3545";
+      const peso = parseFloat(document.getElementById('pesoIMC').value);
+      const altura = parseFloat(document.getElementById('alturaIMC').value) / 100;
+      if (peso && altura) {
+        const imc = peso / (altura * altura);
+        document.getElementById('resultadoIMC').innerText = `Seu IMC é ${imc.toFixed(2)}`;
       } else {
-        status = "Obesidade Grau III";
-        descricao = "Procure urgentemente um médico para avaliação e tratamento.";
-        cor = "#6f42c1";
+        document.getElementById('resultadoIMC').innerText = 'Preencha todos os campos corretamente.';
       }
-      
-      const resultado = document.getElementById("resultadoIMC");
-      resultado.innerHTML = `
-        <div class="result-value" style="color: ${cor}">IMC: ${imc.toFixed(2)}</div>
-        <div style="color: ${cor}; font-weight: bold; margin-bottom: 10px;">${status}</div>
-        <div class="result-description">${descricao}</div>
-      `;
-      resultado.classList.add('show');
     }
 
     function calcularTMB() {
-      const idade = parseInt(document.getElementById("idadeTMB").value);
-      const sexo = document.getElementById("sexoTMB").value;
-      const peso = parseFloat(document.getElementById("pesoTMB").value);
-      const altura = parseFloat(document.getElementById("alturaTMB").value);
-      const atividade = parseFloat(document.getElementById("atividadeTMB").value);
-      
-      // Limpar erros anteriores
-      mostrarErro('IdadeTMB', false);
-      mostrarErro('SexoTMB', false);
-      mostrarErro('PesoTMB', false);
-      mostrarErro('AlturaTMB', false);
-      mostrarErro('AtividadeTMB', false);
-      
-      let hasError = false;
-      
-      if (!validarCampo(idade, 10, 120)) {
-        mostrarErro('IdadeTMB', true);
-        hasError = true;
-      }
-      
-      if (!sexo) {
-        mostrarErro('SexoTMB', true);
-        hasError = true;
-      }
-      
-      if (!validarCampo(peso, 1, 300)) {
-        mostrarErro('PesoTMB', true);
-        hasError = true;
-      }
-      
-      if (!validarCampo(altura, 50, 250)) {
-        mostrarErro('AlturaTMB', true);
-        hasError = true;
-      }
-      
-      if (!atividade) {
-        mostrarErro('AtividadeTMB', true);
-        hasError = true;
-      }
-      
-      if (hasError) return;
-      
-      let tmb;
-      if (sexo === "masculino") {
+      const peso = parseFloat(document.getElementById('pesoTMB').value);
+      const altura = parseFloat(document.getElementById('alturaTMB').value);
+      const idade = parseInt(document.getElementById('idadeTMB').value);
+      const sexo = document.getElementById('sexoTMB').value;
+      let tmb = 0;
+      if (sexo === 'masculino') {
         tmb = 10 * peso + 6.25 * altura - 5 * idade + 5;
       } else {
         tmb = 10 * peso + 6.25 * altura - 5 * idade - 161;
       }
-      
-      const total = tmb * atividade;
-      const manutencao = Math.round(total);
-      const perderPeso = Math.round(total - 500);
-      const ganharPeso = Math.round(total + 500);
-      
-      const resultado = document.getElementById("resultadoTMB");
-      resultado.innerHTML = `
-        <div class="result-value">Gasto Calórico Total: ${manutencao} kcal/dia</div>
-        <div class="result-description">
-          <strong>TMB (Metabolismo Basal):</strong> ${Math.round(tmb)} kcal/dia<br>
-          <strong>Para manter peso:</strong> ${manutencao} kcal/dia<br>
-          <strong>Para perder peso:</strong> ${perderPeso} kcal/dia<br>
-          <strong>Para ganhar peso:</strong> ${ganharPeso} kcal/dia
-        </div>
-      `;
-      resultado.classList.add('show');
+      document.getElementById('resultadoTMB').innerText = `Seu gasto calórico basal é de ${Math.round(tmb)} kcal/dia.`;
     }
 
     function calcularAgua() {
-      const peso = parseFloat(document.getElementById("pesoAgua").value);
-      const atividade = document.getElementById("atividadeAgua").value;
-      
-      // Limpar erros anteriores
-      mostrarErro('PesoAgua', false);
-      mostrarErro('AtividadeAgua', false);
-      
-      let hasError = false;
-      
-      if (!validarCampo(peso, 1, 300)) {
-        mostrarErro('PesoAgua', true);
-        hasError = true;
+      const peso = parseFloat(document.getElementById('pesoAgua').value);
+      if (peso) {
+        const mlPorKg = 35;
+        const totalMl = peso * mlPorKg;
+        const litros = totalMl / 1000;
+        document.getElementById('resultadoAgua').innerText = `Você deve beber aproximadamente ${litros.toFixed(2)} litros de água por dia.`;
+      } else {
+        document.getElementById('resultadoAgua').innerText = 'Digite seu peso corretamente.';
       }
-      
-      if (!atividade) {
-        mostrarErro('AtividadeAgua', true);
-        hasError = true;
-      }
-      
-      if (hasError) return;
-      
-      let mlPorKg = (atividade === "alta") ? 40 : 35;
-      const aguaMl = peso * mlPorKg;
-      const aguaLitros = aguaMl / 1000;
-      const copos200ml = Math.round(aguaMl / 200);
-      const copos250ml = Math.round(aguaMl / 250);
-      
-      const resultado = document.getElementById("resultadoAgua");
-      resultado.innerHTML = `
-        <div class="result-value">Recomendação: ${aguaLitros.toFixed(2)}L por dia</div>
-        <div class="result-description">
-          <strong>Equivalente a:</strong><br>
-          • ${copos200ml} copos de 200ml<br>
-          • ${copos250ml} copos de 250ml<br>
-          • ${Math.round(aguaMl / 500)} garrafas de 500ml
-        </div>
-      `;
-      resultado.classList.add('show');
     }
-
-    // Adicionar eventos de teclado para melhor UX
-    document.addEventListener('keypress', function(e) {
-      if (e.key === 'Enter') {
-        const activeTab = document.querySelector('.tool.active');
-        if (activeTab) {
-          const button = activeTab.querySelector('.calc-btn');
-          if (button) button.click();
-        }
-      }
-    });
   </script>
 </body>
 </html>
