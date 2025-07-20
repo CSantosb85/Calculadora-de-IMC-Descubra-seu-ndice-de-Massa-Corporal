@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Calcule seu IMC, sua Taxa Metabólica Basal (TMB) e sua necessidade diária de hidratação. Ferramentas de saúde completas e gratuitas para cuidar do seu bem-estar.">
-<meta name="keywords" content="calculadora de imc, calculadora de tmb, calculadora de hidratação, calcular taxa metabolica basal, calcular imc, quanta agua beber por dia, indice de massa corporal, gasto calorico diario, saude, fitness, bem-estar">
+  <meta name="keywords" content="calculadora de imc, calculadora de tmb, calculadora de hidratação, calcular taxa metabolica basal, calcular imc, quanta agua beber por dia, indice de massa corporal, gasto calorico diario, saude, fitness, bem-estar">
   <title>Calculadoras de Saúde: IMC, TMB e Hidratação | Grátis e Online</title>
   
   <!-- Google Fonts: Poppins -->
@@ -16,10 +16,10 @@
   <!--               INÍCIO DO CÓDIGO DO GOOGLE ANALYTICS                 -->
   <!-- Substitua 'G-SEU_ID_DE_METRICA_AQUI' pelo seu ID de Métrica real -->
   <!-- ================================================================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_DE_METRICA_AQUI"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWTRJWGKYV"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag( ){dataLayer.push(arguments);}
+    function gtag(  ){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-MWTRJWGKYV');
@@ -62,6 +62,22 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       overflow: hidden; /* Para manter as bordas arredondadas */
     }
+    
+    .main-header {
+      padding: 25px 30px 15px 30px;
+      text-align: center;
+      background-color: rgba(0,0,0,0.05);
+    }
+    .main-header h1 {
+      margin: 0;
+      font-size: 28px;
+      color: #333;
+      font-weight: 700;
+    }
+    .main-header p {
+      margin: 5px 0 0 0;
+      color: #555;
+    }
 
     .nav {
       display: flex;
@@ -99,6 +115,13 @@
       color: var(--primary-color);
       text-align: center;
       font-weight: 700;
+    }
+    .content .description {
+      text-align: center;
+      margin-top: -15px;
+      margin-bottom: 25px;
+      color: #666;
+      font-size: 15px;
     }
 
     .input-group { margin-bottom: 20px; }
@@ -210,18 +233,22 @@
 <body>
 
   <div class="container">
-    <header>
-      <div class="nav">
-        <button class="tab-button active" onclick="openTab(event, 'imc')">IMC</button>
-        <button class="tab-button" onclick="openTab(event, 'calorias')">Calorias</button>
-        <button class="tab-button" onclick="openTab(event, 'agua')">Hidratação</button>
-      </div>
+    <header class="main-header">
+      <h1>Sua Central de Saúde</h1>
+      <p>Calcule IMC, Gasto Calórico e Hidratação em um só lugar.</p>
     </header>
+    
+    <div class="nav">
+      <button class="tab-button active" onclick="openTab(event, 'imc')">IMC</button>
+      <button class="tab-button" onclick="openTab(event, 'calorias')">Gasto Calórico</button>
+      <button class="tab-button" onclick="openTab(event, 'agua')">Hidratação</button>
+    </div>
 
     <main>
       <!-- Aba da Calculadora de IMC -->
       <div id="imc" class="content active">
         <h2>Calculadora de IMC</h2>
+        <p class="description">Avalie se seu peso está adequado para sua altura.</p>
         <div class="input-group"><label for="pesoIMC">Seu Peso (kg):</label><input type="number" id="pesoIMC" placeholder="Ex: 70"></div>
         <div class="input-group"><label for="alturaIMC">Sua Altura (cm):</label><input type="number" id="alturaIMC" placeholder="Ex: 175"></div>
         <button class="main-button" onclick="calcularIMC()">Calcular Meu IMC</button>
@@ -244,11 +271,22 @@
       <!-- Aba da Calculadora de TMB -->
       <div id="calorias" class="content">
         <h2>Calculadora de Gasto Calórico (TMB )</h2>
+        <p class="description">Estime as calorias que seu corpo gasta para funcionar.</p>
         <div class="input-group"><label for="pesoTMB">Peso (kg):</label><input type="number" id="pesoTMB"></div>
         <div class="input-group"><label for="alturaTMB">Altura (cm):</label><input type="number" id="alturaTMB"></div>
         <div class="input-group"><label for="idadeTMB">Idade:</label><input type="number" id="idadeTMB"></div>
         <div class="input-group"><label for="sexoTMB">Sexo:</label><select id="sexoTMB"><option value="masculino">Masculino</option><option value="feminino">Feminino</option></select></div>
-        <button class="main-button" onclick="calcularTMB()">Calcular Minha TMB</button>
+        <div class="input-group">
+          <label for="atividadeTMB">Nível de Atividade Física:</label>
+          <select id="atividadeTMB">
+            <option value="1.2">Sedentário (pouco ou nenhum exercício)</option>
+            <option value="1.375">Leve (exercício 1-3 dias/semana)</option>
+            <option value="1.55">Moderado (exercício 3-5 dias/semana)</option>
+            <option value="1.725">Ativo (exercício 6-7 dias/semana)</option>
+            <option value="1.9">Muito Ativo (exercício intenso, trabalho físico)</option>
+          </select>
+        </div>
+        <button class="main-button" onclick="calcularTMB()">Calcular Gasto Calórico</button>
         <div class="result" id="resultadoTMB" style="display:none;"></div>
         <div class="cta-group">
           <a href="https://go.hotmart.com/U77380533W" target="_blank">🔥 Curso para Acelerar seu Metabolismo</a>
@@ -259,7 +297,8 @@
       <!-- Aba da Calculadora de Água -->
       <div id="agua" class="content">
         <h2>Calculadora de Ingestão de Água</h2>
-        <div class="input-group"><label for="pesoAgua">Seu Peso (kg ):</label><input type="number" id="pesoAgua"></div>
+        <p class="description">Descubra a quantidade de água ideal para você.</p>
+        <div class="input-group"><label for="pesoAgua">Seu Peso (kg  ):</label><input type="number" id="pesoAgua"></div>
         <button class="main-button" onclick="calcularAgua()">Calcular Hidratação</button>
         <div class="result" id="resultadoAgua" style="display:none;"></div>
         <div class="cta-group">
@@ -271,8 +310,8 @@
 
     <div class="social-share">
       <strong>Gostou? Compartilhe!</strong><br><br>
-      <a href="https://api.whatsapp.com/send?text=Calculei%20meu%20IMC%20nesta%20calculadora%20online%20gratuita:%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
-      <a href="https://twitter.com/intent/tweet?text=Ferramenta%20%C3%BAtil%20para%20calcular%20o%20IMC%20e%20cuidar%20da%20sa%C3%BAde!&url=https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="twitter-share">Twitter/X</a>
+      <a href="https://api.whatsapp.com/send?text=Olha%20que%20legal%20esta%20central%20de%20calculadoras%20de%20sa%C3%BAde%20(IMC,%20Calorias%20e%20%C3%81gua ):%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
+      <a href="https://twitter.com/intent/tweet?text=Ferramenta%20%C3%BAtil%20para%20calcular%20IMC,%20gasto%20cal%C3%B3rico%20e%20hidrata%C3%A7%C3%A3o!&url=https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="twitter-share">Twitter/X</a>
     </div>
     
     <footer style="background: transparent; padding-top: 10px; padding-bottom: 20px; color: #333;">
@@ -281,7 +320,7 @@
   </div>
 
   <script>
-    function openTab(evt, tabId ) {
+    function openTab(evt, tabId  ) {
       document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
@@ -310,12 +349,17 @@
       const altura = parseFloat(document.getElementById('alturaTMB').value);
       const idade = parseInt(document.getElementById('idadeTMB').value);
       const sexo = document.getElementById('sexoTMB').value;
+      const fatorAtividade = parseFloat(document.getElementById('atividadeTMB').value);
       const resultadoDiv = document.getElementById('resultadoTMB');
+
       if (peso && altura && idade) {
         let tmb = (sexo === 'masculino')
           ? 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade)
           : 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
-        resultadoDiv.innerHTML = `Sua Taxa Metabólica Basal (TMB) é de aprox. <strong>${Math.round(tmb)} kcal</strong> por dia.`;
+        
+        const gastoTotal = tmb * fatorAtividade;
+
+        resultadoDiv.innerHTML = `Sua Taxa Metabólica Basal (TMB) é de <strong>${Math.round(tmb)} kcal</strong>.<br>Seu gasto calórico diário total, considerando sua atividade, é de aproximadamente <strong>${Math.round(gastoTotal)} kcal</strong>.`;
         resultadoDiv.style.display = 'block';
       } else {
         resultadoDiv.innerText = 'Preencha todos os campos para calcular.';
