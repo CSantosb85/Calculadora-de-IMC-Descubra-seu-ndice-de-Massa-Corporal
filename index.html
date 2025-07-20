@@ -2,338 +2,375 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <title>Calculadora de IMC Online - Descubra Seu Índice de Massa Corporal</title>
-  <meta name="description" content="Use esta calculadora de IMC gratuita para descobrir rapidamente seu índice de massa corporal. Ferramenta simples, rápida e confiável!" />
-</head>
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  
-  <!-- Google Fonts: Poppins -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <title>Calculadora de IMC - Descubra Seu Índice de Massa Corporal Ideal</title>
+  <meta name="description" content="Calcule seu IMC online de forma rápida e simples. Descubra se está com o peso ideal usando nossa calculadora gratuita de Índice de Massa Corporal." />
+  <meta name="keywords" content="IMC, índice de massa corporal, calculadora de IMC, peso ideal, saúde, cálculo de IMC, emagrecimento, bem estar" />
+  <link rel="canonical" href="https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" />
 
-  <!-- ================================================================== -->
-  <!--               INÍCIO DO CÓDIGO DO GOOGLE ANALYTICS                 -->
-  <!-- Substitua 'G-SEU_ID_DE_METRICA_AQUI' pelo seu ID de Métrica real -->
-  <!-- ================================================================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_DE_METRICA_AQUI"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag( ){dataLayer.push(arguments);}
-    gtag('js', new Date());
+  <!-- Open Graph / Facebook -->
+  <meta property="og:title" content="Calculadora de IMC Online - Peso Ideal" />
+  <meta property="og:description" content="Calcule seu Índice de Massa Corporal gratuitamente e descubra se está no peso certo." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" />
+  <!-- Substitua pela URL de uma imagem 1200x630 hospedada no seu repositório ou CDN -->
+  <meta property="og:image" content="https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/assets/og-imc.png" />
 
-    gtag('config', 'G-MWTRJWGKYV');
-  </script>
-  <!-- ================================================================== -->
-  <!--                 FIM DO CÓDIGO DO GOOGLE ANALYTICS                  -->
-  <!-- ================================================================== -->
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Calculadora de IMC Online - Peso Ideal" />
+  <meta name="twitter:description" content="Calcule seu IMC gratuitamente e descubra se está no peso certo." />
+  <meta name="twitter:image" content="https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/assets/og-imc.png" />
+
+  <!-- Estilo de fonte opcional -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      --primary-color: #3a7bd5;
-      --secondary-color: #3a60d5;
-      --accent-color: #ff8c00;
-      --text-color: #333;
-      --bg-color: #f4f7fc;
-      --card-bg: rgba(255, 255, 255, 0.7);
+      --primary: #0066cc;
+      --primary-dark: #004b99;
+      --success: #2e7d32;
+      --warning: #ed6c02;
+      --danger: #d32f2f;
+      --radius: 12px;
     }
-
+    * { box-sizing: border-box; }
     body {
-      font-family: 'Poppins', sans-serif;
+      font-family: 'Roboto', sans-serif;
+      line-height: 1.6;
       margin: 0;
-      background: linear-gradient(120deg, #e0c3fc 0%, #8ec5fc 100%);
-      color: var(--text-color);
-      display: flex;
-      justify-content: center;
-      align-items: flex-start;
-      min-height: 100vh;
-      padding: 20px;
-      box-sizing: border-box;
+      padding: 0;
+      background-color: #f9f9f9;
+      color: #222;
     }
-
-    .container {
-      width: 100%;
-      max-width: 700px;
-      background: var(--card-bg);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      border-radius: 20px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      border: 1px solid rgba(255, 255, 255, 0.18);
-      overflow: hidden; /* Para manter as bordas arredondadas */
-    }
-
-    .nav {
-      display: flex;
-      background-color: rgba(0, 0, 0, 0.1);
-    }
-    .nav button {
-      flex: 1;
-      padding: 18px 10px;
-      background: transparent;
-      color: white;
-      border: none;
-      cursor: pointer;
-      font-size: 16px;
-      font-weight: 600;
-      transition: all 0.3s ease;
-      border-bottom: 3px solid transparent;
-    }
-    .nav button:hover {
-      background-color: rgba(255, 255, 255, 0.1);
-    }
-    .nav button.active {
+    header {
+      background: var(--primary);
       color: #fff;
-      border-bottom: 3px solid var(--accent-color);
+      padding: 1.5rem 1rem;
+      text-align: center;
     }
-
-    .content {
-      padding: 30px;
-      display: none;
-      animation: fadeIn 0.5s ease;
+    header h1 {
+      margin: 0;
+      font-size: 1.75rem;
+      line-height: 1.2;
     }
-    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-    .content.active { display: block; }
-    .content h2 {
+    main {
+      max-width: 700px;
+      margin: 2rem auto;
+      padding: 0 1rem;
+    }
+    .card {
+      background: #fff;
+      padding: 2rem 1.5rem;
+      margin-bottom: 2rem;
+      border-radius: var(--radius);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    h2 {
+      color: var(--primary-dark);
       margin-top: 0;
-      color: var(--primary-color);
-      text-align: center;
-      font-weight: 700;
     }
-
-    .input-group { margin-bottom: 20px; }
-    label {
+    form label {
       display: block;
-      margin-bottom: 8px;
-      font-weight: 600;
-      color: #555;
+      margin-bottom: .25rem;
+      font-weight: 500;
     }
-    input, select {
-      display: block;
+    form input[type="number"] {
       width: 100%;
-      padding: 12px;
-      box-sizing: border-box;
+      padding: .75rem 1rem;
+      font-size: 1rem;
+      margin-bottom: 1rem;
       border: 1px solid #ccc;
-      border-radius: 8px;
-      font-size: 16px;
-      font-family: 'Poppins', sans-serif;
-      transition: border-color 0.3s, box-shadow 0.3s;
+      border-radius: var(--radius);
     }
-    input:focus, select:focus {
-      outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(58, 123, 213, 0.3);
-    }
-
-    .main-button {
-      padding: 15px 20px;
-      background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
-      color: white;
-      border: none;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 18px;
-      font-weight: 600;
+    form button {
+      display: inline-block;
       width: 100%;
-      transition: transform 0.2s, box-shadow 0.2s;
+      padding: 1rem 1.25rem;
+      font-size: 1rem;
+      font-weight: 700;
+      background: var(--primary);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: background .2s ease;
     }
-    .main-button:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    form button:hover {
+      background: var(--primary-dark);
+    }
+    #resultado {
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-top: 1rem;
+    }
+    #classificacao {
+      margin-top: .5rem;
+      font-size: 1rem;
+      font-weight: 500;
+    }
+    .resultado--baixo { color: var(--warning); }
+    .resultado--normal { color: var(--success); }
+    .resultado--sobrepeso { color: var(--warning); }
+    .resultado--obesidade { color: var(--danger); }
+
+    table.faixas-imc {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1.5rem;
+      font-size: .95rem;
+    }
+    table.faixas-imc th, table.faixas-imc td {
+      padding: .75rem;
+      border: 1px solid #e0e0e0;
+      text-align: left;
+    }
+    table.faixas-imc th {
+      background: #f0f0f0;
     }
 
-    .result {
-      font-size: 1.2em;
-      margin-top: 25px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.8);
-      border-left: 5px solid var(--accent-color);
-      border-radius: 8px;
-      text-align: center;
-      animation: fadeIn 0.5s;
+    .share {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: .75rem;
     }
-    .result strong { color: var(--primary-color); }
-
-    .info-section {
-      margin-top: 25px;
-      padding: 20px;
-      background-color: rgba(255, 255, 255, 0.5);
-      border-radius: 8px;
-    }
-    .info-section h4 { margin-top: 0; color: var(--primary-color); }
-    
-    .cta-group a {
-      display: block;
-      margin-top: 15px;
-      padding: 15px;
-      background: var(--accent-color);
-      color: white;
-      text-align: center;
-      border-radius: 8px;
+    .share button, .share a {
       text-decoration: none;
+      text-align: center;
+      padding: .75rem 1rem;
+      border-radius: var(--radius);
+      border: none;
+      cursor: pointer;
+      font-size: 1rem;
       font-weight: 600;
-      transition: all 0.2s;
     }
-    .cta-group a:hover {
-      transform: scale(1.03);
-      box-shadow: 0 4px 10px rgba(0,0,0,0.15);
-    }
-
-    .imc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
-    .imc-table th, .imc-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
-    .imc-table th { background-color: var(--primary-color); color: white; }
-    .imc-table tr:nth-child(even) { background-color: #f8faff; }
-
-    .social-share { margin-top: 30px; text-align: center; }
-    .social-share a {
-      text-decoration: none;
-      font-weight: 600;
-      margin: 0 10px;
-      padding: 10px 15px;
-      border-radius: 20px;
-      transition: all 0.3s;
-    }
-    .whatsapp-share { color: #25D366; background-color: #fff; border: 1px solid #25D366; }
-    .whatsapp-share:hover { background-color: #25D366; color: #fff; }
-    .twitter-share { color: #1DA1F2; background-color: #fff; border: 1px solid #1DA1F2; }
-    .twitter-share:hover { background-color: #1DA1F2; color: #fff; }
+    .btn-whatsapp { background: #25d366; color: #fff; }
+    .btn-copy { background: #e0e0e0; color: #000; }
+    .btn-voltar-topo { background: var(--primary); color: #fff; margin-top:2rem; display:inline-block; }
+    .small-note { font-size: .85rem; color:#666; margin-top:1rem; }
 
     footer {
       text-align: center;
-      padding: 30px;
-      font-size: 14px;
-      color: #eee;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      font-size: .85rem;
+      color: #666;
+      margin: 3rem 0 2rem;
     }
+    footer a { color: var(--primary-dark); text-decoration:none; }
   </style>
+
+  <!-- Schema.org Structured Data (WebApplication) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebApplication",
+    "name": "Calculadora de IMC",
+    "url": "https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/",
+    "applicationCategory": "HealthApplication",
+    "operatingSystem": "Web",
+    "description": "Calcule seu IMC online e descubra se está com o peso ideal.",
+    "inLanguage": "pt-BR",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "BRL"
+    }
+  }
+  </script>
+
+  <!-- Cole aqui seu snippet do Google Analytics GA4 SE AINDA NÃO ESTIVER NO ARQUIVO -->
+  <!--
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);} 
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX');
+  </script>
+  -->
 </head>
 <body>
+  <header>
+    <h1>Calculadora de IMC</h1>
+  </header>
 
-  <div class="container">
-    <header>
-      <div class="nav">
-        <button class="tab-button active" onclick="openTab(event, 'imc')">IMC</button>
-        <button class="tab-button" onclick="openTab(event, 'calorias')">Calorias</button>
-        <button class="tab-button" onclick="openTab(event, 'agua')">Hidratação</button>
-      </div>
-    </header>
+  <main>
+    <!-- Intro -->
+    <section class="card" id="intro">
+      <p>Quer saber se está com o peso ideal? Use nossa calculadora de IMC (Índice de Massa Corporal) gratuita para descobrir de forma simples e rápida.</p>
 
-    <main>
-      <!-- Aba da Calculadora de IMC -->
-      <div id="imc" class="content active">
-        <h2>Calculadora de IMC</h2>
-        <div class="input-group"><label for="pesoIMC">Seu Peso (kg):</label><input type="number" id="pesoIMC" placeholder="Ex: 70"></div>
-        <div class="input-group"><label for="alturaIMC">Sua Altura (cm):</label><input type="number" id="alturaIMC" placeholder="Ex: 175"></div>
-        <button class="main-button" onclick="calcularIMC()">Calcular Meu IMC</button>
-        <div class="result" id="resultadoIMC" style="display:none;"></div>
-        <div class="info-section" id="imc-info" style="display:none;">
-          <h4>Entendendo a Tabela de IMC</h4>
-          <table class="imc-table">
-            <thead><tr><th>IMC</th><th>Classificação</th></tr></thead>
-            <tbody>
-              <tr><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
-              <tr><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
-              <tr><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
-              <tr><td>30.0 e acima</td><td>Obesidade</td></tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="cta-group"><a href="https://amzn.to/3IA7dWA" target="_blank">🛒 Ofertas de Balanças Digitais</a></div>
-      </div>
+      <h2>O que é o IMC?</h2>
+      <p>O IMC é um indicador reconhecido internacionalmente que relaciona seu <strong>peso</strong> com sua <strong>altura</strong>. Ele ajuda a identificar faixas como baixo peso, peso normal, sobrepeso e obesidade.</p>
 
-      <!-- Aba da Calculadora de TMB -->
-      <div id="calorias" class="content">
-        <h2>Calculadora de Gasto Calórico (TMB )</h2>
-        <div class="input-group"><label for="pesoTMB">Peso (kg):</label><input type="number" id="pesoTMB"></div>
-        <div class="input-group"><label for="alturaTMB">Altura (cm):</label><input type="number" id="alturaTMB"></div>
-        <div class="input-group"><label for="idadeTMB">Idade:</label><input type="number" id="idadeTMB"></div>
-        <div class="input-group"><label for="sexoTMB">Sexo:</label><select id="sexoTMB"><option value="masculino">Masculino</option><option value="feminino">Feminino</option></select></div>
-        <button class="main-button" onclick="calcularTMB()">Calcular Minha TMB</button>
-        <div class="result" id="resultadoTMB" style="display:none;"></div>
-        <div class="cta-group">
-          <a href="https://go.hotmart.com/U77380533W" target="_blank">🔥 Curso para Acelerar seu Metabolismo</a>
-          <a href="https://go.hotmart.com/R77187210T" target="_blank">🥗 Guia Nutricional Completo</a>
-        </div>
+      <h2>Como calcular?</h2>
+      <p>Preencha os campos abaixo com seu peso (em quilos) e altura (em metros, com ponto ou vírgula). Clique em <strong>Calcular</strong> para ver seu resultado instantaneamente.</p>
+    </section>
+
+    <!-- Calculadora -->
+    <section class="card" id="calc">
+      <h2>Calcule seu IMC</h2>
+      <form id="formIMC" onsubmit="calcularIMC(event)">
+        <label for="peso">Peso (kg)</label>
+        <input type="number" id="peso" name="peso" min="1" step="0.1" placeholder="Ex: 72.5" required />
+
+        <label for="altura">Altura (m)</label>
+        <input type="number" id="altura" name="altura" min="0" step="0.01" placeholder="Ex: 1.75" required />
+
+        <button type="submit">Calcular</button>
+      </form>
+
+      <div id="saida" style="display:none;">
+        <div id="resultado"></div>
+        <div id="classificacao"></div>
+        <div class="share" id="shareContainer" style="display:none;"></div>
+        <p class="small-note">* Este cálculo é um indicador geral e não substitui avaliação médica ou nutricional individualizada.</p>
       </div>
 
-      <!-- Aba da Calculadora de Água -->
-      <div id="agua" class="content">
-        <h2>Calculadora de Ingestão de Água</h2>
-        <div class="input-group"><label for="pesoAgua">Seu Peso (kg ):</label><input type="number" id="pesoAgua"></div>
-        <button class="main-button" onclick="calcularAgua()">Calcular Hidratação</button>
-        <div class="result" id="resultadoAgua" style="display:none;"></div>
-        <div class="cta-group">
-          <a href="https://amzn.to/44U5QJT" target="_blank">💧 Garrafas com Marcação de Horas</a>
-          <a href="https://amzn.to/4lBfvvN" target="_blank">🧊 Garrafas Térmicas para o Dia a Dia</a>
-        </div>
-      </div>
-    </main>
+      <table class="faixas-imc" aria-label="Tabela de classificação do IMC">
+        <thead>
+          <tr>
+            <th>Classificação</th>
+            <th>Faixa de IMC</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr><td>Abaixo do peso</td><td>Menor que 18,5</td></tr>
+          <tr><td>Peso normal</td><td>18,5 a 24,9</td></tr>
+          <tr><td>Sobrepeso</td><td>25,0 a 29,9</td></tr>
+          <tr><td>Obesidade grau I</td><td>30,0 a 34,9</td></tr>
+          <tr><td>Obesidade grau II</td><td>35,0 a 39,9</td></tr>
+          <tr><td>Obesidade grau III</td><td>40,0 ou mais</td></tr>
+        </tbody>
+      </table>
+    </section>
 
-    <div class="social-share">
-      <strong>Gostou? Compartilhe!</strong><br><br>
-      <a href="https://api.whatsapp.com/send?text=Calculei%20meu%20IMC%20nesta%20calculadora%20online%20gratuita:%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
-      <a href="https://twitter.com/intent/tweet?text=Ferramenta%20%C3%BAtil%20para%20calcular%20o%20IMC%20e%20cuidar%20da%20sa%C3%BAde!&url=https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="twitter-share">Twitter/X</a>
-    </div>
-    
-    <footer style="background: transparent; padding-top: 10px; padding-bottom: 20px; color: #333;">
-      <p style="font-size: 12px; opacity: 0.8;"><strong>Aviso:</strong> Nossas calculadoras são para fins informativos. Consulte sempre um profissional de saúde.</p>
-    </footer>
-  </div>
+    <!-- Conteúdo educativo adicional (SEO + valor para usuário) -->
+    <section class="card" id="mais-sobre-imc">
+      <h2>Por que acompanhar o IMC?</h2>
+      <p>Manter o IMC na faixa considerada saudável pode reduzir o risco de doenças crônicas como diabetes tipo 2, hipertensão e problemas cardiovasculares. O IMC não considera diretamente porcentagem de gordura muscular, então atletas e pessoas muito musculosas podem apresentar valores diferentes da composição real do corpo. Use o resultado como um <em>ponto de partida</em>.</p>
+
+      <h2>Dicas para agir com base no seu resultado</h2>
+      <ul>
+        <li><strong>Abaixo do peso:</strong> Procure orientação nutricional para ajustar sua ingestão calórica.</li>
+        <li><strong>Peso normal:</strong> Mantenha hábitos saudáveis de alimentação e atividade física.</li>
+        <li><strong>Sobrepeso:</strong> Pequenas mudanças na dieta e exercícios regulares podem ajudar.</li>
+        <li><strong>Obesidade:</strong> Busque acompanhamento profissional para estratégia personalizada.</li>
+      </ul>
+    </section>
+
+    <a class="btn-voltar-topo" href="#intro">Voltar ao topo</a>
+  </main>
+
+  <footer>
+    <p>Desenvolvido por Você. Código hospedado no GitHub Pages.</p>
+    <p><a href="https://github.com/csantosb85" target="_blank" rel="noopener">Ver repositório no GitHub</a></p>
+  </footer>
 
   <script>
-    function openTab(evt, tabId ) {
-      document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
-      document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
-      document.getElementById(tabId).classList.add('active');
-      evt.currentTarget.classList.add('active');
+    // Normaliza número inserido com vírgula ou ponto
+    function normalizarNumero(valor) {
+      if (typeof valor === 'string') {
+        valor = valor.replace(',', '.');
+      }
+      return parseFloat(valor);
     }
 
-    function calcularIMC() {
-      const peso = parseFloat(document.getElementById('pesoIMC').value);
-      const altura = parseFloat(document.getElementById('alturaIMC').value) / 100;
-      const resultadoDiv = document.getElementById('resultadoIMC');
-      const infoDiv = document.getElementById('imc-info');
-      if (peso && altura) {
-        const imc = peso / (altura * altura);
-        resultadoDiv.innerHTML = `Seu IMC é <strong>${imc.toFixed(2)}</strong>.`;
-        resultadoDiv.style.display = 'block';
-        infoDiv.style.display = 'block';
+    function classificarIMC(imc) {
+      if (imc < 18.5) {
+        return {texto: 'Abaixo do peso', classe: 'resultado--baixo'};
+      } else if (imc < 25) {
+        return {texto: 'Peso normal', classe: 'resultado--normal'};
+      } else if (imc < 30) {
+        return {texto: 'Sobrepeso', classe: 'resultado--sobrepeso'};
+      } else if (imc < 35) {
+        return {texto: 'Obesidade grau I', classe: 'resultado--obesidade'};
+      } else if (imc < 40) {
+        return {texto: 'Obesidade grau II', classe: 'resultado--obesidade'};
       } else {
-        resultadoDiv.innerText = 'Por favor, preencha seu peso e altura.';
-        resultadoDiv.style.display = 'block';
-        infoDiv.style.display = 'none';
+        return {texto: 'Obesidade grau III', classe: 'resultado--obesidade'};
       }
     }
 
-    function calcularTMB() {
-      const peso = parseFloat(document.getElementById('pesoTMB').value);
-      const altura = parseFloat(document.getElementById('alturaTMB').value);
-      const idade = parseInt(document.getElementById('idadeTMB').value);
-      const sexo = document.getElementById('sexoTMB').value;
-      const resultadoDiv = document.getElementById('resultadoTMB');
-      if (peso && altura && idade) {
-        let tmb = (sexo === 'masculino')
-          ? 88.362 + (13.397 * peso) + (4.799 * altura) - (5.677 * idade)
-          : 447.593 + (9.247 * peso) + (3.098 * altura) - (4.330 * idade);
-        resultadoDiv.innerHTML = `Sua Taxa Metabólica Basal (TMB) é de aprox. <strong>${Math.round(tmb)} kcal</strong> por dia.`;
-        resultadoDiv.style.display = 'block';
-      } else {
-        resultadoDiv.innerText = 'Preencha todos os campos para calcular.';
-        resultadoDiv.style.display = 'block';
+    function formatarNumero(n, casas=1) {
+      return n.toLocaleString('pt-BR', {minimumFractionDigits: casas, maximumFractionDigits: casas});
+    }
+
+    function calcularIMC(evt) {
+      evt.preventDefault();
+      const pesoEl = document.getElementById('peso');
+      const alturaEl = document.getElementById('altura');
+      const peso = normalizarNumero(pesoEl.value);
+      const altura = normalizarNumero(alturaEl.value);
+
+      if (!peso || !altura || altura <= 0) {
+        alert('Por favor, informe peso e altura válidos.');
+        return;
+      }
+
+      const imc = peso / (altura * altura);
+      const cls = classificarIMC(imc);
+
+      const resultadoEl = document.getElementById('resultado');
+      const classificacaoEl = document.getElementById('classificacao');
+      const saida = document.getElementById('saida');
+
+      // limpa classes antigas
+      resultadoEl.className = '';
+      classificacaoEl.className = '';
+
+      resultadoEl.textContent = 'Seu IMC: ' + formatarNumero(imc, 1);
+      classificacaoEl.textContent = 'Classificação: ' + cls.texto;
+      resultadoEl.classList.add(cls.classe);
+      classificacaoEl.classList.add(cls.classe);
+
+      saida.style.display = 'block';
+
+      prepararCompartilhamento(imc, cls.texto);
+
+      // GA4 evento customizado (opcional; requer gtag configurado)
+      if (typeof gtag === 'function') {
+        gtag('event', 'calculo_imc', {
+          'value_imc': imc,
+          'classificacao': cls.texto
+        });
       }
     }
 
-    function calcularAgua() {
-      const peso = parseFloat(document.getElementById('pesoAgua').value);
-      const resultadoDiv = document.getElementById('resultadoAgua');
-      if (peso) {
-        const litros = (peso * 35) / 1000;
-        resultadoDiv.innerHTML = `Você deve beber aproximadamente <strong>${litros.toFixed(2)} litros</strong> de água por dia.`;
-        resultadoDiv.style.display = 'block';
-      } else {
-        resultadoDiv.innerText = 'Por favor, digite seu peso.';
-        resultadoDiv.style.display = 'block';
-      }
+    function prepararCompartilhamento(imc, classificacao) {
+      const shareContainer = document.getElementById('shareContainer');
+      shareContainer.innerHTML = '';
+
+      const urlBase = 'https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/';
+      const urlUTM = urlBase + '?utm_source=share&utm_medium=imc_result&utm_campaign=usuarios';
+
+      const msg = `Meu IMC é ${formatarNumero(imc,1)} (${classificacao}). Calcule o seu aqui: ${urlUTM}`;
+
+      // WhatsApp
+      const whatsLink = 'https://wa.me/?text=' + encodeURIComponent(msg);
+      const whatsBtn = document.createElement('a');
+      whatsBtn.href = whatsLink;
+      whatsBtn.target = '_blank';
+      whatsBtn.rel = 'noopener';
+      whatsBtn.className = 'btn-whatsapp';
+      whatsBtn.textContent = 'Compartilhar no WhatsApp';
+      shareContainer.appendChild(whatsBtn);
+
+      // Copiar para área de transferência
+      const copyBtn = document.createElement('button');
+      copyBtn.type = 'button';
+      copyBtn.className = 'btn-copy';
+      copyBtn.textContent = 'Copiar resultado';
+      copyBtn.addEventListener('click', function(){
+        navigator.clipboard.writeText(msg).then(function(){
+          copyBtn.textContent = 'Copiado!';
+          setTimeout(()=> copyBtn.textContent='Copiar resultado', 2000);
+        });
+      });
+      shareContainer.appendChild(copyBtn);
+
+      shareContainer.style.display = 'flex';
     }
   </script>
 </body>
