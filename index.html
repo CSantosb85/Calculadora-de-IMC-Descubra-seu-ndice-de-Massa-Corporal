@@ -16,7 +16,7 @@
   <!--               INÍCIO DO CÓDIGO DO GOOGLE ANALYTICS                 -->
   <!-- Substitua 'G-SEU_ID_DE_METRICA_AQUI' pelo seu ID de Métrica real -->
   <!-- ================================================================== -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-MWTRJWGKYV"></script>
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_DE_METRICA_AQUI"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(  ){dataLayer.push(arguments);}
@@ -205,7 +205,15 @@
     .imc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     .imc-table th, .imc-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
     .imc-table th { background-color: var(--primary-color); color: white; }
+    .imc-table tr { transition: background-color 0.5s ease; } /* Animação suave da cor */
     .imc-table tr:nth-child(even) { background-color: #f8faff; }
+    .imc-table tr:nth-child(odd) { background-color: #fff; }
+
+    /* <!-- MUDANÇA AQUI: Classes de cor para a tabela --> */
+    .imc-table .highlight-green { background-color: #d4edda !important; color: #155724; font-weight: bold; }
+    .imc-table .highlight-yellow { background-color: #fff3cd !important; color: #856404; font-weight: bold; }
+    .imc-table .highlight-orange { background-color: #ffeeba !important; color: #856404; font-weight: bold; }
+    .imc-table .highlight-red { background-color: #f8d7da !important; color: #721c24; font-weight: bold; }
 
     .social-share { margin-top: 30px; text-align: center; }
     .social-share a {
@@ -257,11 +265,12 @@
           <h4>Entendendo a Tabela de IMC</h4>
           <table class="imc-table">
             <thead><tr><th>IMC</th><th>Classificação</th></tr></thead>
+            <!-- <!-- MUDANÇA AQUI: Adicionados IDs para cada linha da tabela --> -->
             <tbody>
-              <tr><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
-              <tr><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
-              <tr><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
-              <tr><td>30.0 e acima</td><td>Obesidade</td></tr>
+              <tr id="imc-abaixo"><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
+              <tr id="imc-ideal"><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
+              <tr id="imc-sobrepeso"><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
+              <tr id="imc-obesidade"><td>30.0 e acima</td><td>Obesidade</td></tr>
             </tbody>
           </table>
         </div>
@@ -327,16 +336,42 @@
       evt.currentTarget.classList.add('active');
     }
 
+    // <!-- MUDANÇA AQUI: Função de cálculo do IMC atualizada -->
     function calcularIMC() {
       const peso = parseFloat(document.getElementById('pesoIMC').value);
       const altura = parseFloat(document.getElementById('alturaIMC').value) / 100;
       const resultadoDiv = document.getElementById('resultadoIMC');
       const infoDiv = document.getElementById('imc-info');
+
+      // Seleciona as linhas da tabela
+      const linhaAbaixo = document.getElementById('imc-abaixo');
+      const linhaIdeal = document.getElementById('imc-ideal');
+      const linhaSobrepeso = document.getElementById('imc-sobrepeso');
+      const linhaObesidade = document.getElementById('imc-obesidade');
+
+      // Limpa as cores anteriores
+      linhaAbaixo.className = '';
+      linhaIdeal.className = '';
+      linhaSobrepeso.className = '';
+      linhaObesidade.className = '';
+
       if (peso && altura) {
         const imc = peso / (altura * altura);
         resultadoDiv.innerHTML = `Seu IMC é <strong>${imc.toFixed(2)}</strong>.`;
         resultadoDiv.style.display = 'block';
         infoDiv.style.display = 'block';
+
+        // Aplica a cor na linha correspondente
+        if (imc < 18.5) {
+          linhaAbaixo.classList.add('highlight-orange');
+        } else if (imc >= 18.5 && imc < 25) {
+          linhaIdeal.classList.add('highlight-green');
+        } else if (imc >= 25 && imc < 30) {
+          linhaSobrepeso.classList.add('highlight-yellow');
+        } else {
+          linhaObesidade.classList.add('highlight-red');
+        }
+
       } else {
         resultadoDiv.innerText = 'Por favor, preencha seu peso e altura.';
         resultadoDiv.style.display = 'block';
