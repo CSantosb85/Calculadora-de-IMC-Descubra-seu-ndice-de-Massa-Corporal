@@ -19,7 +19,7 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SEU_ID_DE_METRICA_AQUI"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(  ){dataLayer.push(arguments);}
+    function gtag( ){dataLayer.push(arguments);}
     gtag('js', new Date());
 
     gtag('config', 'G-MWTRJWGKYV');
@@ -35,7 +35,7 @@
       --accent-color: #ff8c00;
       --text-color: #333;
       --bg-color: #f4f7fc;
-      --card-bg: rgba(255, 255, 255, 0.7);
+      --card-bg: rgba(255, 255, 255, 0.75); /* Aumentei um pouco a opacidade para legibilidade */
     }
 
     body {
@@ -45,7 +45,7 @@
       color: var(--text-color);
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: flex-start; /* Alinha o container no topo */
       min-height: 100vh;
       padding: 20px;
       box-sizing: border-box;
@@ -60,13 +60,16 @@
       border-radius: 20px;
       box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
       border: 1px solid rgba(255, 255, 255, 0.18);
-      overflow: hidden; /* Para manter as bordas arredondadas */
+      /* A propriedade 'overflow: hidden' foi removida para evitar cortar o conteúdo.
+         O design agora permite que o container cresça naturalmente. */
     }
     
     .main-header {
       padding: 25px 30px 15px 30px;
       text-align: center;
       background-color: rgba(0,0,0,0.05);
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
     }
     .main-header h1 {
       margin: 0;
@@ -205,17 +208,16 @@
     .imc-table { width: 100%; border-collapse: collapse; margin-top: 10px; }
     .imc-table th, .imc-table td { padding: 12px; border: 1px solid #ddd; text-align: left; }
     .imc-table th { background-color: var(--primary-color); color: white; }
-    .imc-table tr { transition: background-color 0.5s ease; } /* Animação suave da cor */
+    .imc-table tr { transition: background-color 0.5s ease; }
     .imc-table tr:nth-child(even) { background-color: #f8faff; }
     .imc-table tr:nth-child(odd) { background-color: #fff; }
 
-    /* <!-- MUDANÇA AQUI: Classes de cor para a tabela --> */
     .imc-table .highlight-green { background-color: #d4edda !important; color: #155724; font-weight: bold; }
     .imc-table .highlight-yellow { background-color: #fff3cd !important; color: #856404; font-weight: bold; }
     .imc-table .highlight-orange { background-color: #ffeeba !important; color: #856404; font-weight: bold; }
     .imc-table .highlight-red { background-color: #f8d7da !important; color: #721c24; font-weight: bold; }
 
-    .social-share { margin-top: 30px; text-align: center; }
+    .social-share { margin-top: 30px; text-align: center; padding: 0 30px; }
     .social-share a {
       text-decoration: none;
       font-weight: 600;
@@ -231,10 +233,12 @@
 
     footer {
       text-align: center;
-      padding: 30px;
+      padding: 20px 30px;
       font-size: 14px;
-      color: #eee;
-      text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+      color: #333;
+      background-color: rgba(0,0,0,0.05);
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
     }
   </style>
 </head>
@@ -265,7 +269,6 @@
           <h4>Entendendo a Tabela de IMC</h4>
           <table class="imc-table">
             <thead><tr><th>IMC</th><th>Classificação</th></tr></thead>
-            <!-- <!-- MUDANÇA AQUI: Adicionados IDs para cada linha da tabela --> -->
             <tbody>
               <tr id="imc-abaixo"><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
               <tr id="imc-ideal"><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
@@ -279,7 +282,7 @@
 
       <!-- Aba da Calculadora de TMB -->
       <div id="calorias" class="content">
-        <h2>Calculadora de Gasto Calórico (TMB )</h2>
+        <h2>Calculadora de Gasto Calórico (TMB)</h2>
         <p class="description">Estime as calorias que seu corpo gasta para funcionar.</p>
         <div class="input-group"><label for="pesoTMB">Peso (kg):</label><input type="number" id="pesoTMB"></div>
         <div class="input-group"><label for="alturaTMB">Altura (cm):</label><input type="number" id="alturaTMB"></div>
@@ -307,7 +310,7 @@
       <div id="agua" class="content">
         <h2>Calculadora de Ingestão de Água</h2>
         <p class="description">Descubra a quantidade de água ideal para você.</p>
-        <div class="input-group"><label for="pesoAgua">Seu Peso (kg  ):</label><input type="number" id="pesoAgua"></div>
+        <div class="input-group"><label for="pesoAgua">Seu Peso (kg ):</label><input type="number" id="pesoAgua"></div>
         <button class="main-button" onclick="calcularAgua()">Calcular Hidratação</button>
         <div class="result" id="resultadoAgua" style="display:none;"></div>
         <div class="cta-group">
@@ -319,37 +322,34 @@
 
     <div class="social-share">
       <strong>Gostou? Compartilhe!</strong><br><br>
-      <a href="https://api.whatsapp.com/send?text=Olha%20que%20legal%20esta%20central%20de%20calculadoras%20de%20sa%C3%BAde%20(IMC,%20Calorias%20e%20%C3%81gua ):%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
+      <a href="https://api.whatsapp.com/send?text=Olha%20que%20legal%20esta%20central%20de%20calculadoras%20de%20sa%C3%BAde%20(IMC,%20Calorias%20e%20%C3%81gua):%20https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="whatsapp-share">WhatsApp</a>
       <a href="https://twitter.com/intent/tweet?text=Ferramenta%20%C3%BAtil%20para%20calcular%20IMC,%20gasto%20cal%C3%B3rico%20e%20hidrata%C3%A7%C3%A3o!&url=https://csantosb85.github.io/Calculadora-de-IMC-Descubra-seu-ndice-de-Massa-Corporal/" target="_blank" class="twitter-share">Twitter/X</a>
     </div>
     
-    <footer style="background: transparent; padding-top: 10px; padding-bottom: 20px; color: #333;">
+    <footer>
       <p style="font-size: 12px; opacity: 0.8;"><strong>Aviso:</strong> Nossas calculadoras são para fins informativos. Consulte sempre um profissional de saúde.</p>
     </footer>
   </div>
 
   <script>
-    function openTab(evt, tabId  ) {
+    function openTab(evt, tabId ) {
       document.querySelectorAll('.content').forEach(el => el.classList.remove('active'));
       document.querySelectorAll('.tab-button').forEach(el => el.classList.remove('active'));
       document.getElementById(tabId).classList.add('active');
       evt.currentTarget.classList.add('active');
     }
 
-    // <!-- MUDANÇA AQUI: Função de cálculo do IMC atualizada -->
     function calcularIMC() {
       const peso = parseFloat(document.getElementById('pesoIMC').value);
       const altura = parseFloat(document.getElementById('alturaIMC').value) / 100;
       const resultadoDiv = document.getElementById('resultadoIMC');
       const infoDiv = document.getElementById('imc-info');
 
-      // Seleciona as linhas da tabela
       const linhaAbaixo = document.getElementById('imc-abaixo');
       const linhaIdeal = document.getElementById('imc-ideal');
       const linhaSobrepeso = document.getElementById('imc-sobrepeso');
       const linhaObesidade = document.getElementById('imc-obesidade');
 
-      // Limpa as cores anteriores
       linhaAbaixo.className = '';
       linhaIdeal.className = '';
       linhaSobrepeso.className = '';
@@ -361,7 +361,6 @@
         resultadoDiv.style.display = 'block';
         infoDiv.style.display = 'block';
 
-        // Aplica a cor na linha correspondente
         if (imc < 18.5) {
           linhaAbaixo.classList.add('highlight-orange');
         } else if (imc >= 18.5 && imc < 25) {
