@@ -216,6 +216,8 @@
     .imc-table .highlight-yellow { background-color: #fff3cd !important; color: #856404; font-weight: bold; }
     .imc-table .highlight-orange { background-color: #ffeeba !important; color: #856404; font-weight: bold; }
     .imc-table .highlight-red { background-color: #f8d7da !important; color: #721c24; font-weight: bold; }
+    .imc-table .highlight-dark-red { background-color: #d32f2f !important; color: white; font-weight: bold; }
+    .imc-table .highlight-black { background-color: #212121 !important; color: white; font-weight: bold; }
 
     .social-share { margin-top: 30px; text-align: center; padding: 0 30px; }
     .social-share a {
@@ -273,7 +275,9 @@
               <tr id="imc-abaixo"><td>Abaixo de 18.5</td><td>Abaixo do Peso</td></tr>
               <tr id="imc-ideal"><td>18.5 - 24.9</td><td>Peso Ideal</td></tr>
               <tr id="imc-sobrepeso"><td>25.0 - 29.9</td><td>Sobrepeso</td></tr>
-              <tr id="imc-obesidade"><td>30.0 e acima</td><td>Obesidade</td></tr>
+              <tr id="imc-obesidade1"><td>30.0 - 34.9</td><td>Obesidade Grau I</td></tr>
+              <tr id="imc-obesidade2"><td>35.0 - 39.9</td><td>Obesidade Grau II</td></tr>
+              <tr id="imc-obesidade3"><td>40.0 e acima</td><td>Obesidade Grau III</td></tr>
             </tbody>
           </table>
         </div>
@@ -348,12 +352,17 @@
       const linhaAbaixo = document.getElementById('imc-abaixo');
       const linhaIdeal = document.getElementById('imc-ideal');
       const linhaSobrepeso = document.getElementById('imc-sobrepeso');
-      const linhaObesidade = document.getElementById('imc-obesidade');
+      const linhaObesidade1 = document.getElementById('imc-obesidade1');
+      const linhaObesidade2 = document.getElementById('imc-obesidade2');
+      const linhaObesidade3 = document.getElementById('imc-obesidade3');
 
+      // Remove todas as classes de highlight
       linhaAbaixo.className = '';
       linhaIdeal.className = '';
       linhaSobrepeso.className = '';
-      linhaObesidade.className = '';
+      linhaObesidade1.className = '';
+      linhaObesidade2.className = '';
+      linhaObesidade3.className = '';
 
       if (peso && altura) {
         const imc = peso / (altura * altura);
@@ -367,8 +376,12 @@
           linhaIdeal.classList.add('highlight-green');
         } else if (imc >= 25 && imc < 30) {
           linhaSobrepeso.classList.add('highlight-yellow');
+        } else if (imc >= 30 && imc < 35) {
+          linhaObesidade1.classList.add('highlight-red');
+        } else if (imc >= 35 && imc < 40) {
+          linhaObesidade2.classList.add('highlight-dark-red');
         } else {
-          linhaObesidade.classList.add('highlight-red');
+          linhaObesidade3.classList.add('highlight-black');
         }
 
       } else {
